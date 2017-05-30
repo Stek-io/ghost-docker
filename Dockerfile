@@ -25,15 +25,15 @@ ENV CASPAR_VERSION 1.3.6
 ENV GHOST_CONTENT /var/lib/ghost
 RUN mkdir -p "$GHOST_CONTENT" \
 	&& chown -R user:user "$GHOST_CONTENT" \
-# Ghost expects "config.js" to be in $GHOST_SOURCE, but it's more useful for
-# image users to manage that as part of their $GHOST_CONTENT volume, so we
-# symlink.
+    # Create config file overrides;
+    # Ghost will use then if it finds a config file that matches config.<env>.json
 	&& ln -s "$GHOST_CONTENT/config.development.json" "$GHOST_SOURCE/config.development.json" \
 	&& ln -s "$GHOST_CONTENT/config.production.json" "$GHOST_SOURCE/config.production.json"
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ADD build "$GHOST_SOURCE/"
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+RUN npm install -g grunt
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 VOLUME $GHOST_CONTENT

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Builds Ghost using yarn. Must run before build-image.sh
+
 # Get full path to the directory of this file
 pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd -P`
