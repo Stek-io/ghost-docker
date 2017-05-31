@@ -12,6 +12,9 @@ cd "$SCRIPTPATH/"
 
 set -ex;
 rm -rf ./build
-git clone https://github.com/TryGhost/Ghost.git ./build
+git clone https://github.com/Stek-io/Ghost.git ./build
 cd ./build
+
+# Checkout Stek.io Branch
+git fetch && git checkout stek.io
 yarn run init

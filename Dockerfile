@@ -23,6 +23,7 @@ ENV GHOST_VERSION 1.0.0-alpha.21
 ENV CASPAR_VERSION 1.3.6
 
 ENV GHOST_CONTENT /var/lib/ghost
+RUN apt-get update && apt-get install -y rsync vim
 RUN mkdir -p "$GHOST_CONTENT" \
 	&& chown -R user:user "$GHOST_CONTENT" \
     # Create config file overrides;
@@ -30,13 +31,12 @@ RUN mkdir -p "$GHOST_CONTENT" \
 	&& ln -s "$GHOST_CONTENT/config.development.json" "$GHOST_SOURCE/config.development.json" \
 	&& ln -s "$GHOST_CONTENT/config.production.json" "$GHOST_SOURCE/config.production.json"
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY start-ghost.sh /usr/local/bin/
 ADD build "$GHOST_SOURCE/"
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
-RUN npm install -g grunt
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN npm install -g grunt knex-migrator
 
 VOLUME $GHOST_CONTENT
 
 EXPOSE 2368
-CMD ["npm", "start"]
+CMD ["start-ghost.sh"]
