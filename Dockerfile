@@ -31,12 +31,11 @@ RUN mkdir -p "$GHOST_CONTENT" \
 	&& ln -s "$GHOST_CONTENT/config.development.json" "$GHOST_SOURCE/config.development.json" \
 	&& ln -s "$GHOST_CONTENT/config.production.json" "$GHOST_SOURCE/config.production.json"
 
-COPY start-ghost.sh /usr/local/bin/
+COPY start-ghost.sh ./start-ghost.sh
 ADD build "$GHOST_SOURCE/"
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 RUN npm install -g grunt knex-migrator
 
 VOLUME $GHOST_CONTENT
 
 EXPOSE 2368
-CMD ["start-ghost.sh"]
+CMD ./start-ghost.sh
