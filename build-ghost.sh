@@ -16,5 +16,5 @@ git clone https://github.com/Stek-io/Ghost.git ./build
 cd ./build
 
 # Checkout Stek.io Branch
-git fetch && git checkout stek.io
+git fetch && git checkout $1
 yarn run init

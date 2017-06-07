@@ -5,4 +5,16 @@ Scripts and dockerfiles required to build Ghost docker images.
 * `build-image.sh`: Builds Ghost image
 * `start-ghost.sh`: Default command used within the Docker Container
 
+# Build a new Ghost Docker Image
+
+1. Build Ghost: Run the following command to build Ghost: `./build-ghost <tag to build>`
+2. Build Docker image: Run the following command to build a Docker image: `./build-image -t <docker image ful name> .`
+3. Push upstream: `docker push` (you will need to be logged in the Docker Hub repository;
+do `docker login` to start a Docker login prompt)
+
+Example:
+
+`./build-ghost 1.0.0-alpha.19`
+`./build-image -t stek/ghost:1.0.0-alpha.19`
+`docker push`
 

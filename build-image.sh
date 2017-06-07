@@ -15,4 +15,4 @@ rm -rf ./build/.*
 rm -rf ./build/core/client/.*
 rm -rf ./build/core/client/node_modules/
 
-docker build -t stek/ghost:1.0.0-alpha .
+docker build $@
