@@ -14,7 +14,7 @@ do `docker login` to start a Docker login prompt)
 
 Example:
 
-`./build-ghost.sh 1.0.0-alpha.19`
-`./build-image.sh -t stek/ghost:1.0.0-alpha.19`
-`docker push`
+* `./build-ghost.sh 1.0.0-alpha.19`
+*  `./build-image.sh -t stek/ghost:1.0.0-alpha.19`
+*  `docker push`
 
