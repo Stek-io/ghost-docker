@@ -17,4 +17,5 @@ cd ./build
 
 # Checkout Stek.io Branch
 git fetch && git checkout $1
-yarn run init
+yarn global add knex-migrator ember-cli grunt-cli && yarn install && grunt symlink && grunt init && grunt prod
+
